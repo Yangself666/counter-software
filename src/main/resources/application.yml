@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:mysql://yangself.cn:3306/counter?useSSL=false&useUnicode=true&CharacterEncoding=utf-8
+    username: root
+    password: Yangself549_
+  groovy:
+    template:
+      enabled: true
+  thymeleaf:
+    prefix: classpath:/static/
+
+server:
+  port: 549
+  servlet:
+    context-path: /counter
+mybatis:
+  mapper-locations: mapper/*.xml
+  type-aliases-package: cn.yangself.counter.domain
+

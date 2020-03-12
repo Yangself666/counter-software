@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yangself.counter.dao.CountMapper">
+    <select id="queryAllCounts" resultType="count">
+        select * from counter.count ;
+    </select>
+
+    <insert id="addCount" parameterType="count">
+        insert into counter.count (cName, num, updateTime)
+        values (#{cName},#{num},#{updateTime});
+    </insert>
+
+    <select id="queryDevices" resultType="string">
+        select cName from counter.count group by cName
+    </select>
+
+    <select id="getCounts" resultType="count" parameterType="map">
+        select * from counter.count where cName = #{cName} and updateTime > #{currentDay};
+    </select>
+
+    <select id="getHistoryCounts" resultType="count" parameterType="map">
+        select * from counter.count where cName=#{cName} and updateTime &gt;= #{pre} and updateTime &lt;= #{suf}
+    </select>
+</mapper>
