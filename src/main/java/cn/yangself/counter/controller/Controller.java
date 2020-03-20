@@ -22,6 +22,12 @@ public class Controller {
         this.countService = countService;
     }
 
+    /**
+     * 向数据库添加一条生产线产量数据
+     * @param cName 设备名称
+     * @param num 设备所记数量
+     * @return 上传成功返回success字符串
+     */
     @RequestMapping("/addData")
     @ResponseBody
     public String addData(String cName,Integer num){
@@ -31,11 +37,20 @@ public class Controller {
         return "success";
     }
 
+    /**
+     * 查询数据库中总共有那些设备
+     * @return 设备名称的集合
+     */
     @RequestMapping("/devices")
     @ResponseBody
     public List<String> devices(){
         return countService.queryDevices();
     }
+
+    /**
+     * 获取今日所有设备的产量数据
+     * @return 产量数据
+     */
     @RequestMapping("/counts")
     @ResponseBody
     public List<Object> counts(){
@@ -68,11 +83,23 @@ public class Controller {
         return result;
     }
 
+
+    /**
+     * 导航至history页面
+     * @return
+     */
     @RequestMapping("/history")
     public String history(){
         return "history";
     }
 
+
+    /**
+     * 根据日期时间范围查找所有设备的产量数据
+     * @param pre 开始时间
+     * @param suf 结束时间
+     * @return 产量数据
+     */
     @RequestMapping("/historyCounts")
     @ResponseBody
     public List<Object> historyCounts(String pre,String suf){
@@ -104,13 +131,4 @@ public class Controller {
         result.add(flag);
         return result;
     }
-
-
-    //{
-    //    columns: ['时间', '生产数量'],
-    //    rows: [{
-    //    '时间': '1234213',
-    //            '生产数量': 234
-    //}],
-    //}
 }
